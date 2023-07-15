@@ -1,19 +1,59 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+// pub fn add(left: usize, right: usize) -> usize {
+//     left + right
+// }
+
+#[derive(Debug)]
+struct Rectagle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectagle {
+    fn can_hold(&self, other: &Rectagle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn exploration() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+    // #[test]
+    // fn exploration() {
+    //     let result = add(2, 2);
+    //     assert_eq!(result, 4);
+    // }
+
+    // #[test]
+    // fn another() {
+    //     panic!("Make this test fail");
+    // }
 
     #[test]
-    fn another() {
-        panic!("Make this test fail");
+    fn larger_can_hold_smaller() {
+        let larger = Rectagle {
+            width: 8,
+            height: 7,
+        };
+        let smaller = Rectagle {
+            width: 5,
+            height: 1,
+        };
+
+        assert!(larger.can_hold(&smaller));
+
+        #[test]
+        fn smaller_cannot_hold_larger() {
+            let larger = Rectagle {
+                width: 8,
+                height: 7,
+            };
+            let smaller = Rectagle {
+                width: 5,
+                height: 1,
+            };
+
+            assert!(!smaller.can_hold(&larger));
+        }
     }
 }
