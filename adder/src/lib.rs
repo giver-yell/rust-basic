@@ -19,20 +19,28 @@
 //     String::from("Hello!")
 // }
 
-pub struct Guess {
-    value: i32,
+// pub struct Guess {
+//     value: i32,
+// }
+
+// impl Guess {
+//     pub fn new(value: i32) -> Guess {
+//         if value < 1 {
+//             panic!("Guess value must be greater than 1, got {}.", value);
+//         } else if value > 100 {
+//             panic!("Guess value must be less than 100, got {}.", value)
+//         }
+
+//         Guess { value }
+//     }
+// }
+
+pub fn add_two(a: i32) -> i32 {
+    internal_adder(a, 2)
 }
 
-impl Guess {
-    pub fn new(value: i32) -> Guess {
-        if value < 1 {
-            panic!("Guess value must be greater than 1, got {}.", value);
-        } else if value > 100 {
-            panic!("Guess value must be less than 100, got {}.", value)
-        }
-
-        Guess { value }
-    }
+fn internal_adder(a: i32, b: i32) -> i32 {
+    a + b
 }
 
 #[cfg(test)]
@@ -89,9 +97,14 @@ mod tests {
     //     );
     // }
 
+    // #[test]
+    // #[should_panic]
+    // fn greater_than_100() {
+    //     Guess::new(200);
+    // }
+
     #[test]
-    #[should_panic]
-    fn greater_than_100() {
-        Guess::new(200);
+    fn internal() {
+        assert_eq!(4, internal_adder(2, 2))
     }
 }
